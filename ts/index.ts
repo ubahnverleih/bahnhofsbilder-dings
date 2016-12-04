@@ -30,7 +30,9 @@ class App {
 
 	public renderLines(items: Object[]) {
 		items.forEach((item)=>{
-			let listitem = $('<li>').html(item['label']);
+			let listitem = $('<li>');
+			let link = $('<a>').html(item['label']);
+			listitem.append(link);
 			listitem.click(() => {this.loadStations(item['id'])})
 			$('#lineList').append(listitem);
 		})

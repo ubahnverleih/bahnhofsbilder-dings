@@ -20,7 +20,9 @@ var App = (function () {
     App.prototype.renderLines = function (items) {
         var _this = this;
         items.forEach(function (item) {
-            var listitem = $('<li>').html(item['label']);
+            var listitem = $('<li>');
+            var link = $('<a>').html(item['label']);
+            listitem.append(link);
             listitem.click(function () { _this.loadStations(item['id']); });
             $('#lineList').append(listitem);
         });
