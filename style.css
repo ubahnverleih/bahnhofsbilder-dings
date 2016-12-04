@@ -1,16 +1,38 @@
+body {
+	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 #stationList {
-	position: fixed;
-	height: 100%;
-	top: 0;
-	left: 0;
-	width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	height: 75%;
+	width: 75%;
 	overflow: scroll;
-	background: #ffffff;
+	background: #f0f0f0;
+	border: 3px #aaa solid;
+    display: flex;
+    padding:7px;
+}
+
+#stationList li {
+	display:block;
+	max-width: 400px;
+	max-height: 90%;
+	list-style: none;
+	background-color: #fff;
+	box-shadow: 0px 1px 1px #333;
+	border-radius:3px;
+	margin: 7px;
+	padding: 7px;
 }
 
 #lineList {
+	padding: 20px;
+	column-count: 2;
 	position: fixed;
-	height: 100%;
+	height: 90%;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -20,14 +42,17 @@
 
 #lineList li {
 	display: block;
-	cursor: pointer;
 	padding: 3px;
 	font-size: 20px;
 	margin-bottom: 8px;
 }
 
+#lineList li a {
+	cursor: pointer;
+}
+
 #closeButton {
-	position: fixed;
+	position: absolute;
 	top: 10px;
 	right: 10px;
 	cursor: pointer;
