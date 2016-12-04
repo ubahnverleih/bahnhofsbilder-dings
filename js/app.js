@@ -13,7 +13,6 @@ var App = (function () {
                 var label = qitem['itemLabel']['value'];
                 items.push({ id: qid, label: label });
             });
-            console.log(items.length);
             _this.renderLines(items);
         });
         $('#stationList').hide();
@@ -21,7 +20,6 @@ var App = (function () {
     App.prototype.renderLines = function (items) {
         var _this = this;
         items.forEach(function (item) {
-            console.log(item);
             var listitem = $('<li>').html(item['label']);
             listitem.click(function () { _this.loadStations(item['id']); });
             $('#lineList').append(listitem);
@@ -29,7 +27,6 @@ var App = (function () {
     };
     App.prototype.loadStations = function (itemID) {
         var _this = this;
-        console.log(itemID);
         var query = "\n\t\tSELECT ?item ?itemLabel ?image {\n\t\t\t?item wdt:P81 wd:" + itemID + ".\n\t\t\tOPTIONAL {?item wdt:P18 ?image}\n\t\t\tSERVICE wikibase:label {\n\t\t\t\tbd:serviceParam wikibase:language \"de\", \"en\".\n\t\t\t}\n\t\t}";
         var url = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql?format=json&query=' + encodeURI(query);
         $.get(url, function (res) {
@@ -39,7 +36,6 @@ var App = (function () {
                 var image = qitem['image'] ? qitem['image']['value'] : "https://upload.wikimedia.org/wikipedia/commons/a/a5/Camera-photo_Upload-240px.png";
                 items.push({ image: image, label: label });
             });
-            console.log(items.length);
             _this.renderStations(items);
         });
     };
@@ -51,7 +47,6 @@ var App = (function () {
         }
         $('#stationList').show();
         items.forEach(function (item) {
-            console.log(item);
             var listitem = $('<li>').html("<img src='" + item['image'] + "?width=400' class='stationImage' /><p class='stationTitle'>" + item['label'] + "</p>");
             $('#stationList').append(listitem);
         });

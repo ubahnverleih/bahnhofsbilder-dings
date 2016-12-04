@@ -23,7 +23,6 @@ class App {
 				let label = qitem['itemLabel']['value'];
 				items.push({id: qid, label: label});
 			})
-			console.log(items.length);
 			this.renderLines(items);
 		})
 		$('#stationList').hide();
@@ -31,7 +30,6 @@ class App {
 
 	public renderLines(items: Object[]) {
 		items.forEach((item)=>{
-			console.log(item);
 			let listitem = $('<li>').html(item['label']);
 			listitem.click(() => {this.loadStations(item['id'])})
 			$('#lineList').append(listitem);
@@ -39,7 +37,6 @@ class App {
 	}
 
 	public loadStations(itemID) {
-		console.log(itemID);
 		let query = `
 		SELECT ?item ?itemLabel ?image {
 			?item wdt:P81 wd:`+itemID+`.
@@ -56,7 +53,6 @@ class App {
 				let image = qitem['image'] ? qitem['image']['value'] : "https://upload.wikimedia.org/wikipedia/commons/a/a5/Camera-photo_Upload-240px.png";
 				items.push({image: image, label: label});
 			})
-			console.log(items.length);
 			this.renderStations(items);
 		})
 	}
@@ -69,7 +65,6 @@ class App {
 		}
 		$('#stationList').show();
 		items.forEach((item)=>{
-			console.log(item);
 			let listitem = $('<li>').html("<img src='"+ item['image'] +"?width=400' class='stationImage' /><p class='stationTitle'>" + item['label'] + "</p>");
 			//listitem.click(() => {this.loadStations(item['id'])})
 			$('#stationList').append(listitem);
